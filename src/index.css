@@ -137,6 +137,14 @@ body :where(h1,h2,h3,h4,h5,h6,p,span,li,a,small,strong,em,label,figcaption,block
 .hover-scale:hover { transform: scale(1.06); }
 .hover-text-scale { transition: transform .18s ease; transform-origin: center; will-change: transform; }
 .hover-text-scale:hover { transform: scale(1.03); }
+.hover-scale-text {
+  display: inline-block; /* permet le transform sans affecter le flux */
+  transition: transform 350ms cubic-bezier(0.2, 0.9, 0.2, 1);
+  transform-origin: center;
+}
+.hover-scale-text:hover {
+  transform: scale(1.03);
+}
 
 /* Scale pour les cartes/blocs sans casser les autres effets (ombres, couleurs) */
 .hover-scale-card { transition: transform .25s ease, box-shadow .25s ease; will-change: transform; }
@@ -165,3 +173,261 @@ body :where(h1,h2,h3,h4,h5,h6,p,span,li,a,small,strong,em,label,figcaption,block
 /* --- Petites utilitaires récurrentes --- */
 .shadow-deep { box-shadow: 0 20px 40px rgba(0,0,0,.25); }
 .ring-gold { box-shadow: 0 0 0 4px rgba(234,179,8,.35); }
+/* hover tilt for images and CTA containers */
+.tilt-hover {
+  will-change: transform;
+  /* durée rallongée pour agrandissement moins rapide (boutons/images utilisant .tilt-hover) */
+  transition: transform 2500ms cubic-bezier(0.2, 0.9, 0.2, 1), box-shadow 2500ms cubic-bezier(0.2, 0.9, 0.2, 1) !important;
+  display: inline-block;
+}
+.tilt-hover:hover {
+  transform: translateY(-6px) rotate(-0.6deg) scale(1.02);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.35);
+}
+.tilt-hover:active {
+  transform: translateY(-2px) rotate(-0.3deg) scale(0.995);
+  transition-duration: 150ms !important;
+}
+
+/* classe pour transition lente (2.5s) utilisée par les boutons/images */
+.tilt-hover-slow {
+  display: inline-block;
+  will-change: transform;
+  -webkit-transition: transform 2500ms cubic-bezier(0.2,0.9,0.2,1) !important;
+  transition: transform 2500ms cubic-bezier(0.2,0.9,0.2,1) !important;
+  /* s'assurer qu'aucune autre transition ne prend le dessus */
+  transition-property: transform, box-shadow !important;
+  transition-duration: 2500ms !important;
+}
+.tilt-hover-slow:hover {
+  transform: scale(1.02);
+  -webkit-transform: scale(1.02);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.18);
+}
+.tilt-hover-slow:active {
+  transform: scale(0.995) !important;
+  transition-duration: 150ms !important;
+}
+
+/* subtle tilt for text elements on hover -> uniquement au survol */
+.tilt-text {
+  display: inline-block;
+  transition: transform 360ms cubic-bezier(0.22, 1, 0.36, 1), color 200ms;
+  transform-origin: center;
+}
+.tilt-text:hover {
+  transform: translateY(-3px) rotate(-0.8deg);
+  color: #ffd966;
+}
+
+/* keep reveal animation from earlier (révélé à l'entrée dans le viewport) */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px) scale(0.995);
+  transition-property: opacity, transform;
+  transition-duration: 600ms;
+  transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+.reveal.in-view {
+  opacity: 1;
+  transform: none;
+}
+
+/* accessible pointer for interactive blocks */
+.tilt-hover, a[role="button"] { cursor: pointer; }
+/* CTA : fond qui scale à hover (1.25) sur 2.5s, texte inchangé */
+.cta-link {
+  position: relative;
+  display: block;
+  max-width: 64rem; /* same as max-w-4xl */
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 9999px;
+  overflow: visible;
+  text-decoration: none;
+}
+.cta-link .bg-layer {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none; /* laisser le clic passer à l'a */
+  transform-origin: center;
+  transition: transform 2500ms cubic-bezier(0.2,0.9,0.2,1), box-shadow 2500ms cubic-bezier(0.2,0.9,0.2,1);
+}
+.cta-link:hover .bg-layer {
+  transform: scale(1.25);
+  box-shadow: 0 24px 60px rgba(0,0,0,0.25);
+}
+
+/* fond bouton : transition lente (2.5s) avec scale moins puissant (1.08) */
+.btn-bg-layer {
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px; /* force l'arrondi complet */
+  pointer-events: none;
+  transform-origin: center;
+  will-change: transform, box-shadow;
+  transition: transform 2500ms cubic-bezier(0.2,0.9,0.2,1), box-shadow 2500ms cubic-bezier(0.2,0.9,0.2,1);
+  /* ensure background covers fully without showing internal artifacts */
+  background-clip: padding-box;
+  -webkit-backface-visibility: hidden;
+}
+a[role="button"]:hover .btn-bg-layer {
+  transform: scale(1.08); /* scale moins prononcé (ajuste si besoin) */
+  box-shadow: 0 10px 25px rgba(0,0,0,0.18);
+}
+
+/* garantir que le texte reste lisible et non transformé */
+.cta-link .z-10 { position: relative; z-index: 10; }
+/* fix: ensure btn-bg-layer has an explicit initial transform and a high-specificity hover rule */
+a[role="button"].reveal.overflow-hidden .btn-bg-layer,
+a[role="button"].reveal.overflow-hidden .btn-bg-layer {
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  pointer-events: none;
+  transform-origin: center;
+  transform: scale(1); /* important: explicit start state */
+  will-change: transform, box-shadow;
+  -webkit-backface-visibility: hidden;
+  background-clip: padding-box;
+  transition: transform 2500ms cubic-bezier(0.2,0.9,0.2,1) !important;
+  transition-property: transform, box-shadow !important;
+  transition-duration: 2500ms !important;
+}
+
+/* hover state — plus spécifique et forcé */
+a[role="button"].reveal.overflow-hidden:hover .btn-bg-layer,
+a[role="button"].reveal:hover .btn-bg-layer {
+  transform: scale(1.08) !important;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.18) !important;
+}
+
+/* fallback pour éléments qui n'ont pas exactement ces classes */
+.btn-bg-layer {
+  transform: scale(1);
+  transition: transform 2500ms cubic-bezier(0.2,0.9,0.2,1);
+}
+.btn-bg-layer:hover {
+  transform: scale(1.08);
+}
+
+/* simple, reliable hover scale for the button background (2.5s) */
+.btn-simple{
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  border-radius: 9999px;
+  text-decoration: none;
+}
+.btn-simple .btn-bg{
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none; /* let clicks go to the link */
+  background: linear-gradient(180deg,#FFD86B 0%,#E8B308 100%);
+  transform: scale(1);
+  transition: transform 2500ms cubic-bezier(0.2,0.9,0.2,1), box-shadow 2500ms cubic-bezier(0.2,0.9,0.2,1);
+  will-change: transform, box-shadow;
+}
+.btn-simple:hover .btn-bg{
+  transform: scale(1.08);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.18);
+}
+.btn-simple .btn-label{
+  position: relative;
+  z-index: 1;
+  display: inline-block;
+  color: #0b0b0b;
+  font-weight: 700;
+  padding: 0.9rem 2rem; /* approx py-4 px-8 */
+  font-size: 1rem; /* adjust if needed */
+  line-height: 1;
+}
+
+/* même animation que la grande CTA : bg-layer scale à hover (2.5s, scale 1.25) */
+.btn-simple {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  border-radius: 9999px;
+  text-decoration: none;
+}
+.btn-simple .bg-layer {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  transform-origin: center;
+  transform: scale(1);
+  transition: transform 2500ms cubic-bezier(0.2,0.9,0.2,1), box-shadow 2500ms cubic-bezier(0.2,0.9,0.2,1);
+  will-change: transform, box-shadow;
+  background-clip: padding-box;
+  -webkit-backface-visibility: hidden;
+}
+.btn-simple:hover .bg-layer {
+  transform: scale(1.25);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+}
+
+/* s'assurer que le texte reste au-dessus et non transformé */
+.btn-simple .z-10 { position: relative; z-index: 10; }
+
+/* animation bg pour les 3 cartes - même principe que la grande CTA */
+.card-cta {
+  position: relative;
+  overflow: hidden;
+  border-radius: 0.75rem; /* rounded-xl */
+  -webkit-backface-visibility: hidden;
+}
+.card-cta .card-bg-layer {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  transform-origin: center;
+  transform: scale(1);
+  /* animation lente identique (2.5s) */
+  transition: transform 2500ms cubic-bezier(0.2,0.9,0.2,1), box-shadow 2500ms cubic-bezier(0.2,0.9,0.2,1);
+  /* léger halo jaune, ajustable */
+  background: radial-gradient(circle at 70% 30%, rgba(234,179,8,0.10), rgba(234,179,8,0.04) 20%, transparent 45%);
+  mix-blend-mode: screen;
+  will-change: transform, box-shadow;
+}
+
+/* hover: même scale que la grande CTA (1.25) */
+.card-cta:hover .card-bg-layer {
+  transform: scale(1.25);
+  box-shadow: 0 20px 50px rgba(234,179,8,0.12);
+}
+
+/* garder le contenu lisible au-dessus */
+.card-cta > .relative { position: relative; z-index: 1; }
+
+/* Désactiver toutes les animations/hover pour les cartes marquées .no-anim
+   (notamment la première carte "Développement Full‑Stack") */
+.card-cta.no-anim,
+.card-cta.no-anim .card-bg-layer,
+.card-cta.no-anim:hover,
+.card-cta.no-anim:hover .card-bg-layer {
+  transition: none !important;
+  transform: none !important;
+  box-shadow: none !important;
+  /* enlever tout halo/gradient si nécessaire (laisser apparence statique) */
+  background: none !important;
+}
+
+/* Si tu veux garder le style de fond mais sans animation, tu peux utiliser à la place :
+.card-cta.no-anim .card-bg-layer {
+  transition: none !important;
+  transform: scale(1) !important;
+  box-shadow: none !important;
+  background: radial-gradient(circle at 70% 30%, rgba(234,179,8,0.06), transparent 30%);
+}
+*/
+
+/* small responsive tweak si besoin */
+@media (max-width: 768px) {
+  .card-cta .card-bg-layer { background-size: cover; }
+}

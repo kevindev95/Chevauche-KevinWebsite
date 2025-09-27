@@ -7,13 +7,13 @@ const ProjectsExemple = () => {
     <section id="ProjectsExemple" className="w-full max-w-6xl mx-auto px-6 md:px-10 lg:px-16 py-16 md:py-24">
       {/* Titre + intro centrés comme la maquette */}
       <header className="text-center reveal reveal-up">
-  <h2 className="text-5xl md:text-6xl font-extrabold text-soft-anim hover-text-scale">Projets:</h2>
+  <h2 className="text-5xl md:text-6xl font-extrabold text-soft-anim hover-text-scale hover-glow">Projets:</h2>
         <div className="w-20 h-[3px] bg-yellow-400 mx-auto mt-3 rounded" />
       </header>
-  <p className="mt-8 text-lg md:text-xl text-gray-300 leading-8 text-center reveal reveal-up text-soft-anim hover-text-scale">
+  <p className="mt-8 text-lg md:text-xl text-gray-300 leading-8 text-center reveal reveal-up text-soft-anim hover-text-scale hover-tilt hover-float hover-glow">
         Depuis 2022, le développement web est devenu l'une de mes passions, en particulier dans le domaine front end/full stack, où je fais principalement du travail d'intégration et code des sites web à partir de zéro, parfois même en les concevant (comme celui sur lequel vous êtes actuellement).
       </p>
-  <p className="mt-6 text-xl md:text-2xl font-semibold text-yellow-400 text-center reveal reveal-up reveal-delay-1 text-soft-anim hover-text-scale">
+  <p className="mt-6 text-xl md:text-2xl font-semibold text-yellow-400 text-center reveal reveal-up reveal-delay-1 text-soft-anim hover-text-scale hover-tilt hover-float hover-glow">
         Vous trouverez ci-dessous quelques-uns de mes projets !
       </p>
       <div className="w-16 h-[3px] bg-yellow-400 mx-auto mt-3 rounded reveal reveal-scale-x reveal-delay-2" />
@@ -28,9 +28,9 @@ const ProjectsExemple = () => {
         </div>
         {/* Texte à droite */}
         <div className='reveal reveal-right'>
-          <h3 className='text-4xl md:text-5xl font-extrabold text-soft-anim hover-text-scale'>MNTN</h3>
+          <h3 className='text-4xl md:text-5xl font-extrabold text-soft-anim hover-text-scale hover-tilt hover-glow'>MNTN</h3>
           <div className='w-16 h-[3px] bg-yellow-400 mt-3 rounded' />
-          <p className='mt-6 text-gray-200 text-lg leading-8 text-soft-anim hover-text-scale'>
+          <p className='mt-6 text-gray-200 text-lg leading-8 text-soft-anim hover-text-scale hover-glow'>
             Le site internet ci-dessus provient d’un projet Figma que j’ai modifié et par la suite, programmé en moins d’une journée avec le framework React.
           </p>
           {/* Étiquettes et boutons pour coller à la maquette (style uniquement) */}
@@ -67,9 +67,9 @@ const ProjectsExemple = () => {
         </div>
         {/* Texte à droite */}
         <div className='reveal reveal-right'>
-          <h3 className='text-4xl md:text-5xl font-extrabold text-soft-anim'>95SMP</h3>
+          <h3 className='text-4xl md:text-5xl font-extrabold text-soft-anim hover-glow'>95SMP</h3>
           <div className='w-16 h-[3px] bg-yellow-400 mt-3 rounded' />
-          <p className='mt-6 text-gray-200 text-lg leading-8 text-soft-anim'>
+          <p className='mt-6 text-gray-200 text-lg leading-8 text-soft-anim hover-glow'>
             Serveur sur le jeu vidéo culturel “Minecraft” dont j’ai pu faire le design et la programmation avec html, css, javascript. Ce site fut une réussite car celui ci fut particulièrement apprécié des joueurs grâce à ses visuels, animations et ses liens de redirection vers le serveur de jeu ou encore discord.
           </p>
           <div className='mt-6 flex flex-wrap gap-3'>
@@ -89,7 +89,7 @@ const ProjectsExemple = () => {
       </div>
       <img src="/Line1.png" alt="" className='w-100 h-auto mt-10 mx-auto'/>
       <div>
-  <p className='font-semibold text-4xl reveal reveal-up text-soft-anim hover-text-scale'>Il y a également d’autres plus petit projets que j’ai effectué qui m’ont permis de gagner en expérience.</p>
+  <p className='font-semibold text-4xl reveal reveal-up text-soft-anim hover-text-scale hover-glow'>Il y a également d’autres plus petit projets que j’ai effectué qui m’ont permis de gagner en expérience.</p>
       </div>
     </section>
   )

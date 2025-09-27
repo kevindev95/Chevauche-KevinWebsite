@@ -73,7 +73,7 @@ const Offres = () => (
             `}
           >
             {offre.populaire && (
-              <div className="absolute -top-4 right-4 bg-yellow-400 text-[#101e2b] px-3 py-1 rounded-full font-bold text-xs shadow">
+              <div className="absolute -top-4 right-4 bg-yellow-400 text-[#101e2b] px-3 py-1 rounded-full font-bold text-xs shadow hover:bg-yellow-300 transition">
                 ⭐ Populaire
               </div>
             )}
@@ -101,7 +101,7 @@ const Offres = () => (
 
   <div className="mt-8 text-center reveal hover-scale-card w-fit mx-auto" style={{ padding:'10px 14px', borderRadius:'14px' }}>
         <span className="text-xl text-gray-300 block mb-2 text-soft-anim">Contact pro :</span>
-        <a href={`mailto:${email}`} className="text-2xl md:text-3xl font-bold text-yellow-400 underline text-soft-anim">
+        <a href={`mailto:${email}`} className="text-2xl md:text-3xl font-bold text-yellow-400 underline text-soft-anim hover:bg-yellow-300 transition">
           {email}
         </a>
       </div>

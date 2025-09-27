@@ -106,14 +106,14 @@ const Hello = ({ goToOffres, goToAbout }) => {
   <span className="particle" style={{ left: '85%', top: '58%', ['--dx']: '-5px', ['--dy']: '-3px', ['--dur']: '11s', ['--delay']: '1.3s', ['--amp']: '2.8' }} />
       </div>
   {/* Titre principal */}
-  <h1 className="text-8xl font-extrabold mt-8 relative z-10 reveal reveal-up text-soft-anim hover-text-scale">Bonjour</h1>
+  <h1 className="text-8xl font-extrabold mt-8 relative z-10 reveal reveal-up text-soft-anim hover-text-scale hover-brace">Bonjour</h1>
 
   {/* Nom + petit soulignement jaune */}
-  <h2 className="text-4xl mt-4 relative z-10 reveal reveal-up reveal-delay-1 text-soft-anim hover-text-scale">Kevin Chevauché</h2>
+  <h2 className="text-4xl mt-4 relative z-10 reveal reveal-up reveal-delay-1 text-soft-anim hover-text-scale hover-brace">Kevin Chevauché</h2>
   <div className="w-16 h-1 bg-yellow-400 mx-auto mt-3 rounded relative z-10 reveal reveal-scale-x reveal-delay-2" />
 
   {/* sous-titre */}
-  <p className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto mt-6 relative z-10 reveal reveal-blur reveal-delay-3 text-soft-anim hover-text-scale">
+  <p className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto mt-6 relative z-10 reveal reveal-blur reveal-delay-3 text-soft-anim hover-brace">
         Développeur Web & Designer passionné par la création d'expériences
         numériques exceptionnelles
       </p>

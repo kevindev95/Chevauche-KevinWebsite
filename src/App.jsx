@@ -4,6 +4,7 @@ import About from '../pages/About'
 import Header from '../components/Header'
 import { useEffect, useState } from "react";
 import './App.css'
+import OffreSpeciale from '../pages/OffreSpéciale'
 
 function App() {
   const [page, setPage] = useState("main");
@@ -12,6 +13,7 @@ function App() {
   const goToOffres = () => { setPage("offres"); setActiveNav('offres'); };
   const goToMain = () => { setPage("main"); setActiveNav('home'); };
   const goToAbout = () => { setPage("about"); setActiveNav('about'); };
+  const goToOffreSpeciale = () => { setPage("offre-speciale"); setActiveNav('offre-speciale'); };
 
   // Fonction pour scroller vers la section projets
   const scrollToProjects = () => {
@@ -60,21 +62,32 @@ function App() {
     return () => obs.disconnect();
   }, [page]);
 
+  // au chargement, si l'URL contient /offre-speciale on ouvre la page correspondante
+  useEffect(() => {
+    const path = window.location.pathname.replace(/\/+$/,''); // supprime slash final
+    if (path === '/offre-speciale') {
+      setPage('offre-speciale');
+      setActiveNav('offre-speciale');
+    }
+  }, []);
+
   return (
     <div className="bg-[#101e2b] text-white min-h-screen overflow-x-hidden">
       <Header
         goToMain={goToMain}
         goToOffres={goToOffres}
         goToAbout={goToAbout}
+        goToOffreSpeciale={goToOffreSpeciale}
         page={page}
         activeNav={activeNav}
         scrollToProjects={page === "main" ? scrollToProjects : undefined}
         scrollToHome={page === "main" ? scrollToHome : undefined}
       />
-      <div className="pt-[72px]">{/* espace pour la navbar fixe (hauteur ~64-72px) */}
-  {page === "main" && <MainContent goToOffres={goToOffres} goToAbout={goToAbout} />}
-      {page === "about" && <About />}
-      {page === "offres" && <Offres />}
+      <div className="pt-[72px]">
+        {page === "main" && <MainContent goToOffres={goToOffres} goToAbout={goToAbout} />}
+        {page === "about" && <About />}
+        {page === "offres" && <Offres />}
+        {page === "offre-speciale" && <OffreSpeciale />}
       </div>
     </div>
   )
