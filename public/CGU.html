@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="fr">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>CGU — Conditions Générales d’Utilisation</title>
+		<meta name="color-scheme" content="dark" />
+		<style>
+			:root{
+				--bg:#101e2b; --panel:#0f1a27; --border:rgba(255,255,255,.08);
+				--text:#e5e7eb; --muted:#9ca3af; --accent:#eab308; --accent2:#38bdf8;
+			}
+			html{scroll-behavior:smooth}
+			*,*::before,*::after{box-sizing:border-box}
+			body{
+				margin:0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+				background: radial-gradient(900px 360px at 18% 15%, rgba(234, 179, 8, 0.06), rgba(16, 30, 43, 0) 60%),
+										radial-gradient(900px 360px at 82% 10%, rgba(56, 189, 248, 0.06), rgba(16, 30, 43, 0) 60%),
+										linear-gradient(180deg, #0f1a27 0%, #122035 100%);
+				color:var(--text);
+			}
+			.container{max-width:1000px; padding:32px 20px 64px; margin:0 auto}
+			header.hero{padding:28px 0 12px; text-align:center}
+			.brand{display:inline-flex; align-items:center; gap:10px; opacity:.9; color:var(--muted); font-weight:600; letter-spacing:.02em; transition:transform .2s ease, color .2s ease}
+			.brand:hover{transform:translateY(-1px) scale(1.03); color:#fff}
+			.brand-dot{width:8px; height:8px; border-radius:9999px; background:var(--accent); box-shadow:0 0 0 6px rgba(234,179,8,.15); transition:transform .2s ease, box-shadow .2s ease}
+			@keyframes pulse-dot{0%,100%{transform:scale(1); box-shadow:0 0 0 6px rgba(234,179,8,.15)}50%{transform:scale(1.08); box-shadow:0 0 0 10px rgba(234,179,8,.10)}}
+			.brand:hover .brand-dot{animation:pulse-dot 1.2s ease-in-out infinite}
+			h1{font-size:clamp(28px,4.6vw,46px); margin:10px 0 6px; font-weight:800; letter-spacing:.3px}
+			.subtitle{color:var(--muted); font-size:clamp(14px,2.6vw,18px)}
+			.underline{height:3px; width:110px; background:var(--accent); border-radius:6px; margin:16px auto 0; transition:width .25s ease}
+			header.hero:hover .underline{width:140px}
+
+			.toc{margin:28px auto 6px; padding:16px 18px; background:rgba(255,255,255,.02); border:1px solid var(--border); border-radius:14px}
+			.toc h2{margin:0 0 8px; font-size:18px}
+			.toc ul{margin:8px 0 0; padding:0; list-style:none; display:flex; flex-wrap:wrap; gap:10px 16px}
+			.toc a{color:var(--text); text-decoration:none; display:inline-flex; align-items:center; gap:8px; padding:8px 10px; border-radius:10px; border:1px solid transparent; transition:transform .18s ease, background .2s ease, color .2s ease}
+			.toc a .num{color:var(--accent); font-weight:700}
+			.toc a:hover{transform:scale(1.06); background:rgba(234,179,8,.08); color:#fff; border-color:rgba(234,179,8,.25)}
+
+			section.card{margin:22px 0 0; background:var(--panel); border:1px solid var(--border); border-radius:16px; padding:22px 20px; transition:transform .22s ease, box-shadow .25s ease, border-color .25s ease, background .25s ease}
+			section.card + section.card{margin-top:16px}
+			section.card:hover{transform:translateY(-4px); box-shadow:0 18px 36px rgba(0,0,0,.35); border-color:rgba(234,179,8,.35); background:linear-gradient(180deg, rgba(15,26,39,0.98), rgba(18,32,53,0.98))}
+			section.card h3{margin:0 0 10px; font-size:22px; display:flex; align-items:center; gap:10px; transition:color .25s ease, transform .2s ease}
+			section.card:hover h3{color:#fff; transform:translateX(2px)}
+			.badge{display:inline-grid; place-items:center; width:28px; height:28px; border-radius:9999px; background:rgba(234,179,8,.14); color:var(--accent); font-weight:800; border:1px solid rgba(234,179,8,.35); transition:transform .2s ease, box-shadow .2s ease}
+			section.card:hover .badge{transform:translateY(-1px) scale(1.05); box-shadow:0 0 0 4px rgba(234,179,8,.15)}
+			p{line-height:1.7; margin:10px 0; color:var(--text); transition:color .22s ease, transform .18s ease}
+			section.card p:hover{color:#fff; transform:translateX(2px)}
+			ul{margin:8px 0 0 18px; padding:0}
+			li{margin:6px 0; color:#d1d5db; transition:color .2s ease, transform .18s ease}
+			li::marker{color:#d1d5db}
+			li:hover{color:#fff; transform:translateX(4px)}
+			li:hover::marker{color:var(--accent)}
+			a{color:var(--accent); text-underline-offset:3px; transition:color .2s ease, text-shadow .2s ease}
+			a:hover{color:#fcdc5c; text-shadow:0 0 8px rgba(234,179,8,.2)}
+			/* Email centré */
+			.center-email{ text-align:center; margin-top:10px; }
+			.center-email a{ font-weight:700; font-size:clamp(18px,3.2vw,22px); }
+					/* Hover doux global sur les textes de la page CGU */
+					:where(h1,h2,h3,h4,h5,h6,p,span,li,a,small,strong,em,label,figcaption,blockquote,button){
+						transition: color .18s ease, text-shadow .2s ease;
+					}
+					:where(h1,h2,h3,h4,h5,h6,p,span,li,a,small,strong,em,label,figcaption,blockquote,button):hover{
+						text-shadow:0 0 8px rgba(234,179,8,.16);
+					}
+
+			footer.site{margin:36px 0 0; padding:18px; text-align:center; color:var(--muted); transition:color .2s ease}
+			footer.site:hover{color:#cbd5e1}
+			.top{position:fixed; right:16px; bottom:16px; background:var(--accent); color:#101e2b; width:44px; height:44px; border-radius:9999px; display:grid; place-items:center; font-weight:900; text-decoration:none; box-shadow:0 14px 30px rgba(0,0,0,.3); border:1px solid rgba(0,0,0,.2); transition:transform .2s ease, box-shadow .2s ease}
+			.top:hover{transform:translateY(-2px) scale(1.06); box-shadow:0 18px 36px rgba(0,0,0,.36)}
+
+			@media (min-width: 860px){
+				section.card{padding:26px 26px}
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container" id="top">
+			<header class="hero">
+				<div class="brand"><span class="brand-dot"></span> CGU du site de Kevin Chevauché</div>
+				<h1>Conditions Générales d’Utilisation</h1>
+				<p class="subtitle">Dernière mise à jour : 15 août 2025</p>
+				<div class="underline" aria-hidden="true"></div>
+			</header>
+
+			<nav class="toc" aria-label="Sommaire">
+				<h2>Sommaire</h2>
+				<ul>
+					<li><a href="#objet"><span class="num">1.</span> Objet</a></li>
+					<li><a href="#acces"><span class="num">2.</span> Accès au Site</a></li>
+					<li><a href="#propriete"><span class="num">3.</span> Propriété intellectuelle</a></li>
+					<li><a href="#utilisation"><span class="num">4.</span> Utilisation du Site</a></li>
+					<li><a href="#donnees"><span class="num">5.</span> Données personnelles</a></li>
+					<li><a href="#responsabilite"><span class="num">6.</span> Responsabilité</a></li>
+					<li><a href="#liens"><span class="num">7.</span> Liens externes</a></li>
+					<li><a href="#modification"><span class="num">8.</span> Modification des CGU</a></li>
+					<li><a href="#droit"><span class="num">9.</span> Droit applicable et juridiction</a></li>
+					<li><a href="#contact"><span class="num">10.</span> Contact</a></li>
+				</ul>
+			</nav>
+
+			<section id="objet" class="card">
+				<h3><span class="badge">1</span> Objet</h3>
+				<p>Les présentes CGU définissent les conditions dans lesquelles Kevin Chevauché met à disposition son Site et les services proposés.</p>
+			</section>
+
+			<section id="acces" class="card">
+				<h3><span class="badge">2</span> Accès au Site</h3>
+				<p>Le Site est accessible gratuitement à tout utilisateur disposant d’un accès à internet. Kevin Chevauché s’efforce de garantir un accès continu et sécurisé, mais n’est pas responsable des interruptions, erreurs, ou indisponibilités.</p>
+			</section>
+
+			<section id="propriete" class="card">
+				<h3><span class="badge">3</span> Propriété intellectuelle</h3>
+				<p>Tous les contenus présents sur le Site (textes, images, vidéos, logos, designs, codes source, etc.) sont la propriété exclusive de Kevin Chevauché ou de ses partenaires et sont protégés par les lois en vigueur relatives à la propriété intellectuelle.</p>
+				<p>Toute reproduction, représentation, modification ou utilisation totale ou partielle du contenu sans autorisation écrite préalable est strictement interdite.</p>
+			</section>
+
+			<section id="utilisation" class="card">
+				<h3><span class="badge">4</span> Utilisation du Site</h3>
+				<p>L’utilisateur s’engage à utiliser le Site conformément à la loi, aux bonnes mœurs et aux présentes CGU. Il s’interdit notamment de :</p>
+				<ul>
+					<li>publier des contenus illégaux, diffamatoires, injurieux, ou contraires aux droits des tiers ;</li>
+					<li>tenter d’accéder de manière non autorisée à des données ou espaces réservés ;</li>
+					<li>perturber le fonctionnement du Site.</li>
+				</ul>
+			</section>
+
+			<section id="donnees" class="card">
+				<h3><span class="badge">5</span> Données personnelles</h3>
+				<p>Kevin Chevauché collecte uniquement les données personnelles que vous lui transmettez volontairement via des formulaires de contact ou d’inscription.</p>
+				<p>Ces données sont utilisées uniquement pour répondre à vos demandes et ne sont ni revendues, ni partagées avec des tiers.</p>
+				<p>Conformément à la loi « Informatique et Libertés » et au RGPD, vous disposez d’un droit d’accès, de rectification et de suppression de vos données. Vous pouvez exercer ce droit en contactant : <a href="mailto:kevin-chevauche@chevauche-kevin.com">kevin-chevauche@chevauche-kevin.com</a>.</p>
+			</section>
+
+			<section id="responsabilite" class="card">
+				<h3><span class="badge">6</span> Responsabilité</h3>
+				<p>Kevin Chevauché ne pourra être tenu responsable des dommages directs ou indirects résultant de l’utilisation du Site, notamment en cas d’erreur, d’interruption, ou d’intrusion extérieure.</p>
+				<p>L’utilisateur est responsable de l’usage qu’il fait du Site.</p>
+			</section>
+
+			<section id="liens" class="card">
+				<h3><span class="badge">7</span> Liens externes</h3>
+				<p>Le Site peut contenir des liens vers des sites tiers. Kevin Chevauché n’exerce aucun contrôle sur ces sites et décline toute responsabilité quant à leur contenu.</p>
+			</section>
+
+			<section id="modification" class="card">
+				<h3><span class="badge">8</span> Modification des CGU</h3>
+				<p>Kevin Chevauché se réserve le droit de modifier les présentes CGU à tout moment. Les nouvelles conditions seront applicables dès leur mise en ligne sur le Site.</p>
+			</section>
+
+			<section id="droit" class="card">
+				<h3><span class="badge">9</span> Droit applicable et juridiction</h3>
+				<p>Les présentes CGU sont soumises au droit français. En cas de litige, les tribunaux français seront compétents.</p>
+			</section>
+
+					<section id="contact" class="card">
+				<h3><span class="badge">10</span> Contact</h3>
+						<p>Pour toute question relative aux CGU, vous pouvez contacter Kevin Chevauché à l’adresse&nbsp;:</p>
+						<p class="center-email"><a href="mailto:kevin-chevauche@chevauche-kevin.com">kevin-chevauche@chevauche-kevin.com</a></p>
+			</section>
+
+			<footer class="site">© <span id="year"></span> Kevin Chevauché — Tous droits réservés.</footer>
+		</div>
+
+		<a class="top" href="#top" aria-label="Revenir en haut">↑</a>
+		<script>
+			// année dynamique
+			(function(){
+				var y = document.getElementById('year');
+				if (y) y.textContent = new Date().getFullYear();
+			})();
+		</script>
+	</body>
+</html>

@@ -1,0 +1,167 @@
+@import "tailwindcss";
+
+/* Empêche les débordements horizontaux indésirables */
+html, body, #root {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* Animation légère pour tous les textes */
+@keyframes text-scale-soft { 0%,100%{ transform: scale(1);} 50%{ transform: scale(1.01);} }
+body, body *:where(h1,h2,h3,h4,h5,h6,p,span,li,a,button,label,small,strong,em,blockquote,figcaption) {
+  -webkit-font-smoothing: antialiased;
+}
+.text-soft-anim { animation: text-scale-soft 4s ease-in-out infinite; transform-origin: center; }
+
+/* Hover doux sur tous les textes (global) */
+body :where(h1,h2,h3,h4,h5,h6,p,span,li,a,small,strong,em,label,figcaption,blockquote,button) {
+  transition: color .18s ease, text-shadow .2s ease;
+}
+body :where(h1,h2,h3,h4,h5,h6,p,span,li,a,small,strong,em,label,figcaption,blockquote,button):hover {
+  text-shadow: 0 0 8px rgba(234,179,8,.16);
+}
+@media (prefers-reduced-motion: reduce) {
+  body :where(h1,h2,h3,h4,h5,h6,p,span,li,a,small,strong,em,label,figcaption,blockquote,button) { transition: none; }
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+.animate-marquee {
+  display: inline-flex;
+  animation: marquee 18s linear infinite;
+  will-change: transform;
+}
+
+@keyframes marquee-reverse {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0%); }
+}
+.animate-marquee-reverse {
+  display: inline-flex;
+  animation: marquee-reverse 18s linear infinite;
+  will-change: transform;
+}
+
+/* Inversion fluide gérée en JS (voir Hello.jsx) */
+
+.overflow-x-auto {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE 10+ */
+}
+.overflow-x-auto::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+/* --- Particules de fond pour la section héro --- */
+@keyframes particle-drift {
+  0% { transform: translate3d(0, 0, 0); opacity: 0.3; }
+  50% {
+    transform: translate3d(
+      calc(var(--dx, 8px) * var(--amp, 2.4)),
+      calc(var(--dy, -8px) * var(--amp, 2.4)),
+      0
+    );
+    opacity: 0.85;
+  }
+  100% { transform: translate3d(0, 0, 0); opacity: 0.3; }
+}
+
+.particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+  /* léger dégradé de fond derrière les billes */
+  background:
+    radial-gradient(900px 360px at 18% 25%, rgba(234, 179, 8, 0.06), rgba(16, 30, 43, 0) 60%),
+    radial-gradient(900px 360px at 82% 20%, rgba(56, 189, 248, 0.06), rgba(16, 30, 43, 0) 60%),
+    linear-gradient(180deg, #0f1a27 0%, #122035 100%);
+}
+
+.particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 9999px;
+  background: rgba(234, 179, 8, 0.5); /* jaune */
+  box-shadow: 0 0 6px rgba(234, 179, 8, 0.35);
+  animation-name: particle-drift;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-duration: calc(var(--dur, 8s) * var(--spd, 0.7));
+  animation-delay: var(--delay, 0s);
+}
+
+/* --- Animations d’entrée au scroll (globales) --- */
+.reveal { opacity: 0; transition: opacity .6s ease, transform .6s ease, filter .6s ease; }
+.reveal.in-view { opacity: 1; }
+.reveal-up { transform: translateY(24px); }
+.reveal-up.in-view { transform: none; }
+.reveal-down { transform: translateY(-24px); }
+.reveal-down.in-view { transform: none; }
+.reveal-left { transform: translateX(-28px); }
+.reveal-left.in-view { transform: none; }
+.reveal-right { transform: translateX(28px); }
+.reveal-right.in-view { transform: none; }
+.reveal-zoom { transform: scale(.92); }
+.reveal-zoom.in-view { transform: none; }
+.reveal-rotate-left { transform: rotate(-6deg) translateY(8px); }
+.reveal-rotate-left.in-view { transform: none; }
+.reveal-rotate-right { transform: rotate(6deg) translateY(-8px); }
+.reveal-rotate-right.in-view { transform: none; }
+.reveal-blur { filter: blur(6px); }
+.reveal-blur.in-view { filter: none; }
+.reveal-scale-x { transform: scaleX(0); transform-origin: center; }
+.reveal-scale-x.in-view { transform: scaleX(1); }
+.reveal-delay-1 { transition-delay: .1s; }
+.reveal-delay-2 { transition-delay: .2s; }
+.reveal-delay-3 { transition-delay: .3s; }
+.reveal-delay-4 { transition-delay: .4s; }
+.reveal-delay-5 { transition-delay: .5s; }
+.reveal-delay-6 { transition-delay: .6s; }
+
+/* --- Hover utilities (effets variés) --- */
+.hover-float { transition: transform .3s ease, box-shadow .3s ease, filter .3s ease; }
+.hover-float:hover { transform: translateY(-6px) scale(1.02); }
+.hover-tilt { transition: transform .25s ease, filter .25s ease; }
+.hover-tilt:hover { transform: translateY(-2px) rotate(-1.5deg); }
+.hover-glow { transition: box-shadow .3s ease, transform .3s ease; }
+.hover-glow:hover { box-shadow: 0 0 0 4px rgba(234,179,8,.15), 0 18px 36px rgba(0,0,0,.35); transform: translateY(-4px); }
+.hover-brace { transition: transform .25s ease, text-shadow .25s ease, color .25s ease; transform-origin: center; }
+.hover-brace:hover { transform: translateY(-6px) scale(1.06) rotate(1deg); text-shadow: 0 0 12px rgba(234,179,8,.45), 0 0 28px rgba(234,179,8,.18); color: #fde047; }
+.hover-scale { transition: transform .2s ease; transform-origin: center; will-change: transform; }
+.hover-scale:hover { transform: scale(1.06); }
+.hover-text-scale { transition: transform .18s ease; transform-origin: center; will-change: transform; }
+.hover-text-scale:hover { transform: scale(1.03); }
+
+/* Scale pour les cartes/blocs sans casser les autres effets (ombres, couleurs) */
+.hover-scale-card { transition: transform .25s ease, box-shadow .25s ease; will-change: transform; }
+.hover-scale-card:hover { transform: translateY(-4px) scale(1.04); }
+
+@keyframes wiggle { 0%,100%{ transform: rotate(0deg);} 25%{ transform: rotate(-4deg);} 75%{ transform: rotate(4deg);} }
+.hover-wiggle:hover { animation: wiggle .4s ease-in-out; }
+
+/* --- Survol des textes dans la section Projets --- */
+#ProjectsExemple :where(h1,h2,h3,h4,h5,h6,p,span,li,a,strong,em,small,figcaption,blockquote,button) {
+  transition: color .18s ease, text-shadow .22s ease, transform .22s ease;
+}
+#ProjectsExemple :where(h1,h2,h3,h4,h5,h6,p,span,li,a,strong,em,small,figcaption,blockquote,button):hover {
+  transform: translateY(-1px) scale(1.015);
+  text-shadow: 0 0 8px rgba(234,179,8,.16);
+}
+
+/* --- Click/active utilities --- */
+@keyframes press-bounce { 0%{ transform: scale(1);} 50%{ transform: scale(.96);} 100%{ transform: scale(1);} }
+.click-bounce:active { animation: press-bounce 220ms cubic-bezier(.3,.7,.4,1); }
+.click-push { transition: transform .15s ease, filter .15s ease; }
+.click-push:active { transform: translateY(2px) scale(.97); filter: brightness(.98); }
+.click-rotate:active { transform: rotate(1deg) scale(.98); }
+.click-rotate-small:active { transform: rotate(-1deg) scale(.99); }
+
+/* --- Petites utilitaires récurrentes --- */
+.shadow-deep { box-shadow: 0 20px 40px rgba(0,0,0,.25); }
+.ring-gold { box-shadow: 0 0 0 4px rgba(234,179,8,.35); }
