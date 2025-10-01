@@ -8,12 +8,33 @@ import OffreSpeciale from '../pages/OffreSpéciale'
 
 function App() {
   const [page, setPage] = useState("main");
-  const [activeNav, setActiveNav] = useState("home"); // 'home' | 'about' | 'offres'
+  const [activeNav, setActiveNav] = useState("home"); // 'home' | 'about' | 'offres' | 'offre-speciale'
 
-  const goToOffres = () => { setPage("offres"); setActiveNav('offres'); };
-  const goToMain = () => { setPage("main"); setActiveNav('home'); };
-  const goToAbout = () => { setPage("about"); setActiveNav('about'); };
-  const goToOffreSpeciale = () => { setPage("offre-speciale"); setActiveNav('offre-speciale'); };
+  const goToOffres = () => { setPage("offres"); setActiveNav('offres'); window.location.hash = '/offres'; };
+  const goToMain = () => { setPage("main"); setActiveNav('home'); window.location.hash = '/'; };
+  const goToAbout = () => { setPage("about"); setActiveNav('about'); window.location.hash = '/about'; };
+  const goToOffreSpeciale = () => { setPage("offre-speciale"); setActiveNav('offre-speciale'); window.location.hash = '/offre-speciale'; };
+
+  // Sync initial page from location.hash (dev-friendly, pas de modifs serveur requises)
+  useEffect(() => {
+    const mapHashToPage = (hash) => {
+      const path = (hash || window.location.hash || '').replace(/^#\/?/, '').replace(/\/+$/,'');
+      if (path === 'offres') return { p: 'offres', nav: 'offres' };
+      if (path === 'about') return { p: 'about', nav: 'about' };
+      if (path === 'offre-speciale') return { p: 'offre-speciale', nav: 'offre-speciale' };
+      return { p: 'main', nav: 'home' };
+    };
+
+    const applyHash = () => {
+      const { p, nav } = mapHashToPage(window.location.hash);
+      setPage(p);
+      setActiveNav(nav);
+    };
+
+    applyHash();
+    window.addEventListener('hashchange', applyHash);
+    return () => window.removeEventListener('hashchange', applyHash);
+  }, []);
 
   // Fonction pour scroller vers la section projets
   const scrollToProjects = () => {

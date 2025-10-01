@@ -74,7 +74,7 @@ const Header = ({ goToMain, goToOffres, goToAbout, goToOffreSpeciale, page, scro
           </button>
 
           <a
-            href="/offre-speciale"
+            href="#/offre-speciale"
             onClick={(e) => { e.preventDefault(); goToOffreSpeciale?.(); setIsOpen(false); }}
             className={`text-base font-semibold pb-1 transition-colors hover-scale ${
               page === 'offre-speciale' ? 'text-yellow-400 border-b-2 border-yellow-400' : 'text-white/90 hover:text-yellow-400'

@@ -1,6 +1,6 @@
 import React from "react";
 
-const MAILTO = "mailto:kevin-chevauche@chevauche-kevin.com?subject=Offre%20Sp%C3%A9ciale%20-%20Je%20veux%20mon%20site%20%C3%A0%205%20%E2%82%AC%2Fmois";
+const PAYMENT_LINK = "https://buy.stripe.com/28E8wPgMq8BFesK8En4wM00";
 
 export default function OffreSpéciale() {
   return (
@@ -28,11 +28,13 @@ export default function OffreSpéciale() {
 
             <div className="flex items-center gap-6">
               <a
-                href={MAILTO}
+                href={PAYMENT_LINK}
                 role="button"
-                aria-label="Me contacter pour l'offre spéciale"
+                aria-label="Acheter l'offre spéciale"
                 className="btn-simple reveal relative inline-block overflow-hidden rounded-full"
                 style={{ transitionDelay: "240ms" }}
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 <span
                   className="bg-layer absolute inset-0 rounded-full bg-gradient-to-b from-yellow-300 to-yellow-500"
@@ -46,8 +48,10 @@ export default function OffreSpéciale() {
               <div className="ml-2 reveal tilt-text" style={{ transitionDelay: "320ms" }}>
                 <div className="text-sm text-gray-300">Contact</div>
                 <a
-                  href="mailto:kevin-chevauche@chevauche-kevin.com"
+                  href={PAYMENT_LINK}
                   className="text-yellow-300"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   chevauche-kevin.com
                 </a>
@@ -58,7 +62,13 @@ export default function OffreSpéciale() {
           {/* DROITE - mockup / image clickable */}
           <div className="flex justify-center md:justify-end">
             <div className="relative reveal" style={{ transitionDelay: "120ms" }}>
-              <a href={MAILTO} aria-label="Contacter pour offre spéciale - mockup" className="block tilt-hover-slow">
+              <a
+                href={PAYMENT_LINK}
+                aria-label="Acheter l'offre spéciale - mockup"
+                className="block tilt-hover-slow"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                   <img
                     src="/OffreSpecialeIMG1.png"
                     alt="Offre Spéciale mockup"
@@ -87,7 +97,13 @@ export default function OffreSpéciale() {
             </div>
 
             <div className="md:w-1/2 flex justify-end reveal" style={{ transitionDelay: "100ms" }}>
-              <a href={MAILTO} aria-label="Contacter pour offre spéciale - GTMetrix" className="block tilt-hover-slow w-full max-w-[420px] md:max-w-[420px]">
+              <a
+                href={PAYMENT_LINK}
+                aria-label="Acheter l'offre spéciale - GTMetrix"
+                className="block tilt-hover-slow w-full max-w-[420px] md:max-w-[420px]"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <div className="w-full h-auto rounded-xl bg-white/5 p-2 transform-gpu">
                   <img
                     src="/GtMetrixPhoto.png"
@@ -103,11 +119,13 @@ export default function OffreSpéciale() {
         {/* SECTION RAPPPEL / CTA LARGE (entièrement cliquable) */}
         <section className="mt-24">
           <a
-            href={MAILTO}
+            href={PAYMENT_LINK}
             role="button"
-            aria-label="Me contacter pour l'offre spéciale"
+            aria-label="Acheter l'offre spéciale"
             className="cta-link reveal"
             style={{ transitionDelay: "360ms" }}
+            target="_blank"
+            rel="noopener noreferrer"
           >
             {/* fond qui scale */}
             <span className="bg-layer absolute inset-0 rounded-full bg-gradient-to-r from-yellow-300 to-yellow-500"></span>
